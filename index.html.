@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gửi chằm thúi 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #ffe6ef, #fff5f8);
+  color: #a34f70;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 650px;
+  margin: 60px auto;
+  padding: 30px 20px;
+  background: #ffffffd9;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px #e9a6bd55;
+}
+
+h1 {
+  color: #d76c96;
+}
+
+button {
+  background: #e88eaf;
+  color: white;
+  border: none;
+  padding: 13px 24px;
+  border-radius: 25px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #d76c96;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 13px;
+  border: 1px solid #efb8cb;
+  border-radius: 12px;
+  margin: 10px;
+}
+
+textarea {
+  height: 200px;
+  resize: vertical;
+}
+
+.hidden {
+  display: none;
+}
+
+.card {
+  background: #fff0f5;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 15px 0;
+}
+
+.song {
+  padding: 12px;
+  border-bottom: 1px solid #f4c8d7;
+}
+
+.song img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+  margin: 10px auto;
+}
+
+.heart {
+  font-size: 45px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+
+#hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.floating {
+  position: absolute;
+  bottom: -30px;
+  animation: fly 7s linear forwards;
+}
+
+@keyframes fly {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+.cover {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin: 10px auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<!-- MÀN HÌNH MẬT KHẨU -->
+<div class="container" id="login">
+  <div class="heart">💗</div>
+  <h1>Gửi chằm thúi</h1>
+  <p>Một thế giới nhỏ dành riêng cho bạn.</p>
+
+  <input
+    type="password"
+    id="password"
+    placeholder="Nhập mật khẩu..."
+  >
+
+  <br>
+
+  <button onclick="unlock()">Mở chiếc hộp ♡</button>
+  <p id="error"></p>
+</div>
+
+<!-- TRANG CHỦ -->
+<div class="container hidden" id="home">
+  <div class="heart">💕</div>
+  <h1>Gửi chằm thúi</h1>
+  <p>Chào mừng đến với thế giới nhỏ của chúng mình.</p>
+
+  <button onclick="show('music')">🎵 Âm nhạc</button>
+  <button onclick="show('letter')">💌 Lá thư</button>
+</div>
+
+<!-- MỤC ÂM NHẠC -->
+<div class="container hidden" id="music">
+  <h1>🎵 Góc âm nhạc</h1>
+  <p>Những bài hát em muốn gửi đến anh 💗</p>
+
+  <div class="card">
+    <h3>Tại Vì Sao - MCK</h3>
+    <iframe width="100%" height="220"
+      src="https://www.youtube.com/embed/ID_VIDEO_1"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="card">
+    <h3>Chìm Sâu - MCK</h3>
+    <iframe width="100%" height="220"
+      src="https://www.youtube.com/embed/ID_VIDEO_2"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="card">
+    <h3>Anh Đã Ổn Hơn - MCK</h3>
+    <iframe width="100%" height="220"
+      src="https://www.youtube.com/embed/ID_VIDEO_3"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <button onclick="show('home')">← Quay lại</button>
+</div>
+
+<!-- MỤC LÁ THƯ -->
+<div class="container hidden" id="letter">
+  <h1>💌 Lá thư nhỏ</h1>
+  <p>Những điều em muốn nói...</p>
+
+  <textarea id="message"
+    placeholder="Gửi chằm thúi,
+
+Hôm nay em muốn nói rằng..."></textarea>
+
+  <br>
+  <button onclick="saveLetter()">Lưu lá thư ♡</button>
+  <button onclick="show('home')">← Quay lại</button>
+  <p id="status"></p>
+</div>
+
+<script>
+function unlock() {
+  const password = document.getElementById("password").value;
+
+  if (password === "0302") {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("home").classList.remove("hidden");
+  } else {
+    document.getElementById("error").textContent =
+      "Mật khẩu chưa đúng, thử lại nhé 💗";
+  }
+}
+
+function show(page) {
+  ["home", "music", "letter"].forEach(id => {
+    document.getElementById(id).classList.add("hidden");
+  });
+
+  document.getElementById(page).classList.remove("hidden");
+}
+
+// LƯU LÁ THƯ
+const message = document.getElementById("message");
+message.value = localStorage.getItem("loveLetter") || "";
+
+function saveLetter() {
+  localStorage.setItem("loveLetter", message.value);
+  document.getElementById("status").textContent =
+    "Đã lưu lá thư thành công 💗";
+}
+
+// TRÁI TIM BAY
+setInterval(() => {
+  const heart = document.createElement("span");
+  heart.className = "floating";
+  heart.textContent = "♡";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 25) + "px";
+
+  document.getElementById("hearts").appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}, 700);
+</script>
+
+</body>
+</html>
