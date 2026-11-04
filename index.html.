@@ -164,25 +164,25 @@ textarea {
   <p>Những bài hát em muốn gửi đến anh 💗</p>
 
   <div class="card">
-    <h3>Tại Vì Sao - MCK</h3>
+    <h3>Nguyễn Văn Mười - MCK</h3>
     <iframe width="100%" height="220"
-      src="https://www.youtube.com/embed/ID_VIDEO_1"
+      src="https://youtu.be/vDgKtOoGljU"
       allowfullscreen>
     </iframe>
   </div>
 
   <div class="card">
-    <h3>Chìm Sâu - MCK</h3>
+    <h3>Cảm ơn - MCK</h3>
     <iframe width="100%" height="220"
-      src="https://www.youtube.com/embed/ID_VIDEO_2"
+      src="https://youtu.be/BWNkgqKZP0Q"
       allowfullscreen>
     </iframe>
   </div>
 
   <div class="card">
-    <h3>Anh Đã Ổn Hơn - MCK</h3>
+    <h3>IDK - MCK</h3>
     <iframe width="100%" height="220"
-      src="https://www.youtube.com/embed/ID_VIDEO_3"
+      src="https://youtu.be/2MsxTstZ_Wo"
       allowfullscreen>
     </iframe>
   </div>
