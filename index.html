@@ -123,6 +123,20 @@ textarea {
   margin: 10px auto;
   display: block;
 }
+  .letter-content {
+  background: #fffaf0;
+  border: 2px solid #f3c2d2;
+  border-radius: 18px;
+  padding: 25px 20px;
+  margin: 20px 0;
+  color: #805466;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 2;
+  text-align: left;
+  white-space: pre-line;
+  box-shadow: 0 5px 18px #e9a6bd44;
+}
 </style>
 </head>
 
@@ -211,55 +225,16 @@ textarea {
 <!-- MỤC LÁ THƯ -->
 <div class="container hidden" id="letter">
   <h1>💌 Lá thư nhỏ</h1>
-  <p>Những điều em muốn nói...</p>
-
-  <textarea id="message"
-    placeholder="Gửi chằm thúi,
-
-Hôm nay em muốn nói rằng..."></textarea>
-
-  <br>
-  <button onclick="saveLetter()">Lưu lá thư ♡</button>
-  <button onclick="show('home')">← Quay lại</button>
-  <p id="status"></p>
-</div>
-
-<!-- MỤC LÁ THƯ -->
-<div class="container hidden" id="letter">
-  <h1>💌 Lá thư nhỏ</h1>
-  <p>Những điều em muốn nói...</p>
-
-  <textarea id="message"
-    placeholder="Gửi chằm thúi,
-
-Hôm nay em muốn nói rằng..."></textarea>
-
-  <br>
-  <button onclick="saveLetter()">Lưu lá thư ♡</button>
-  <button onclick="show('home')">← Quay lại</button>
-  <p id="status"></p>
-</div>
-
-<!-- MỤC LÁ THƯ -->
-<div class="container hidden" id="letter">
-  <h1>💌 Lá thư nhỏ</h1>
   <p>Gửi chồng thúi của em 💗</p>
 
   <div class="letter-content">
     Chúc chồng thúi 19.11, chắc anh cũng không ngờ đâuuu haaa, em muốn gây bất ngờ cho anh nhưng mà em háo hứng lắm em muốn tặng ngay từ đầu tháng 11 rồi í nhưng mà em phải đặc biệt một tí… vì em là người yêu anh mà.
-
     Biết anh biết MCK nên em mới để âm nhạc như thế đó không biết anh có ưng hăm.
-
     Yêu chồng thúi!!!
-
     Em chúc anh 19.11 vui vẻeee, hạnh phúc ở bên em và bên cạnh gia đình, luôn bên cạnh em tới lúc gặp rồi bền vững mãi đời:)) mặc dù quen cũng không được lâu nhưng mà em muốn bên anh mãi thôi.. người bạn trai tốt của em.
-
     Mong sao anh đừng bị ảnh hưởng những sự tiêu cực của bên ngoài hoặc những điều khó nghe của người khác, anh mãi là anh một người hoàn hảo trong mắt em, chẳng cần phải đặc biệt trước mắt người khác.. trong mắt em đủ rồi ha!!
-
     Anh phải học thật giỏi, chăm chỉ với mục tiêu mà mình muốn và đạt được ước muốn đấy. Anh phải ở cạnh em chịu tính em lâu dài nhéee em không muốn mất anh đâu, ơ mà còn nữa anh học thì cũng vừa phải thôi đừng thức khuya rồi cố quá nhé không bệnh đó em lo lắm..
-
     Câu cuối cùng là em yêu anh nhiều lắmmm!!!
-
     Trẻ trâu của em:))))
   </div>
 
@@ -286,16 +261,6 @@ function show(page) {
   });
 
   document.getElementById(page).classList.remove("hidden");
-}
-
-// LƯU LÁ THƯ
-const message = document.getElementById("message");
-message.value = localStorage.getItem("loveLetter") || "";
-
-function saveLetter() {
-  localStorage.setItem("loveLetter", message.value);
-  document.getElementById("status").textContent =
-    "Đã lưu lá thư thành công 💗";
 }
 
 // TRÁI TIM BAY
