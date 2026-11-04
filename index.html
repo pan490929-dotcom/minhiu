@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -48,7 +47,7 @@ button:hover {
   background: #d76c96;
 }
 
-input, textarea {
+input {
   width: 90%;
   padding: 13px;
   border: 1px solid #efb8cb;
@@ -56,34 +55,8 @@ input, textarea {
   margin: 10px;
 }
 
-textarea {
-  height: 200px;
-  resize: vertical;
-}
-
 .hidden {
   display: none;
-}
-
-.card {
-  background: #fff0f5;
-  padding: 20px;
-  border-radius: 20px;
-  margin: 15px 0;
-}
-
-.song {
-  padding: 12px;
-  border-bottom: 1px solid #f4c8d7;
-}
-
-.song img {
-  width: 130px;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 15px;
-  display: block;
-  margin: 10px auto;
 }
 
 .heart {
@@ -115,15 +88,156 @@ textarea {
     opacity: 0;
   }
 }
-.cover {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 18px;
-  margin: 10px auto;
-  display: block;
+
+/* MUSIC PLAYER */
+
+.album-player {
+  background: linear-gradient(145deg, #fffafd, #f9dce8);
+  border: 1px solid #f5c4d6;
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 0 10px 30px #d98aa855;
 }
-  .letter-content {
+
+.album-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.album-left {
+  text-align: center;
+}
+
+.album-cover-wrap {
+  width: 155px;
+  height: 155px;
+  margin: 10px auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid white;
+  box-shadow: 0 5px 20px #d889aa88;
+}
+
+.album-cover-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #d76c96;
+  font-weight: bold;
+}
+
+.album-left h2 {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.artist {
+  color: #b77b91;
+  font-size: 14px;
+}
+
+.album-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 15px 0;
+}
+
+.album-controls button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.album-controls .play-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #d93678;
+  font-size: 19px;
+}
+
+.album-list {
+  background: #ffffff99;
+  border-radius: 18px;
+  padding: 12px;
+}
+
+.list-title {
+  color: #c54e7d;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 6px;
+  margin: 7px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  background: #fff9fc;
+}
+
+.track.active {
+  background: #f6c8da;
+}
+
+.track img {
+  width: 43px;
+  height: 43px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.track div {
+  flex: 1;
+  min-width: 0;
+}
+
+.track b {
+  font-size: 11px;
+}
+
+.track small {
+  display: block;
+  color: #a9798c;
+  font-size: 10px;
+}
+
+.track span {
+  font-size: 11px;
+  color: #c65c85;
+}
+
+.track:active {
+  transform: scale(0.97);
+}
+
+.youtube-player {
+  margin-top: 18px;
+}
+
+.youtube-player iframe {
+  border-radius: 15px;
+  border: none;
+}
+
+/* LÁ THƯ */
+
+.letter-content {
   background: #fffaf0;
   border: 2px solid #f3c2d2;
   border-radius: 18px;
@@ -137,6 +251,28 @@ textarea {
   white-space: pre-line;
   box-shadow: 0 5px 18px #e9a6bd44;
 }
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .container {
+    margin: 30px auto;
+    padding: 22px 14px;
+  }
+
+  .album-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .album-cover-wrap {
+    width: 145px;
+    height: 145px;
+  }
+
+  .album-list {
+    width: 100%;
+  }
+}
 </style>
 </head>
 
@@ -145,6 +281,7 @@ textarea {
 <div id="hearts"></div>
 
 <!-- MÀN HÌNH MẬT KHẨU -->
+
 <div class="container" id="login">
   <div class="heart">💗</div>
   <h1>Gửi chằm thúi</h1>
@@ -163,6 +300,7 @@ textarea {
 </div>
 
 <!-- TRANG CHỦ -->
+
 <div class="container hidden" id="home">
   <div class="heart">💕</div>
   <h1>Gửi chằm thúi</h1>
@@ -172,109 +310,320 @@ textarea {
   <button onclick="show('letter')">💌 Lá thư</button>
 </div>
 
-<!-- MỤC ÂM NHẠC -->
+<!-- MUSIC ALBUM -->
+
 <div class="container hidden" id="music">
-  <h1>🎵 Góc âm nhạc</h1>
-  <p>Những bài hát em muốn gửi đến anh 💗</p>
 
-  <!-- BÀI 1 -->
-  <div class="card">
-    <h3>Nguyễn Văn Mười - MCK</h3>
+  <h1>🎧 Our Little Album</h1>
+  <p>Những giai điệu dành riêng cho chúng mình 💗</p>
 
-    <img src="nguyen-van-muoi.jpg"
-         class="cover"
-         alt="Nguyễn Văn Mười">
+  <div class="album-player">
 
-    <iframe width="100%" height="220"
-      src="https://www.youtube.com/embed/vDgKtOoGljU"
-      allowfullscreen>
-    </iframe>
-  </div>
+    <div class="album-layout">
 
-  <!-- BÀI 2 -->
-  <div class="card">
-    <h3>Cảm ơn - MCK</h3>
+      <!-- BÊN TRÁI: ẢNH VÀ ĐIỀU KHIỂN -->
 
-    <img src="cam-on.jpg"
-         class="cover"
-         alt="Cảm ơn">
+      <div class="album-left">
 
-    <iframe width="100%" height="220"
-      src="https://www.youtube.com/embed/BWNkgqKZP0Q"
-      allowfullscreen>
-    </iframe>
-  </div>
+        <div class="album-cover-wrap">
+          <img
+            id="albumCover"
+            src="nguyen-van-muoi.jpg"
+            alt="Album cover"
+          >
+        </div>
 
-  <!-- BÀI 3 -->
-  <div class="card">
-    <h3>IDK - MCK</h3>
+        <p class="album-label">NOW PLAYING</p>
 
-    <img src="idk.JPEG"
-         class="cover"
-         alt="IDK">
+        <h2 id="songTitle">Nguyễn Văn Mười</h2>
 
-    <iframe width="100%" height="220"
-      src="https://www.youtube.com/embed/2MsxTstZ_Wo"
-      allowfullscreen>
-    </iframe>
+        <p class="artist">MCK</p>
+
+        <div class="album-controls">
+
+          <button onclick="previousSong()">⏮</button>
+
+          <button
+            class="play-button"
+            onclick="togglePlay()"
+            id="playBtn"
+          >▶</button>
+
+          <button onclick="nextSong()">⏭</button>
+
+        </div>
+
+      </div>
+
+      <!-- BÊN PHẢI: DANH SÁCH NHẠC -->
+
+      <div class="album-list">
+
+        <p class="list-title">♡ MY PLAYLIST ♡</p>
+
+        <div class="track active" onclick="selectSong(0)">
+
+          <img src="nguyen-van-muoi.jpg">
+
+          <div>
+            <b>Nguyễn Văn Mười</b>
+            <small>MCK</small>
+          </div>
+
+          <span>01</span>
+
+        </div>
+
+        <div class="track" onclick="selectSong(1)">
+
+          <img src="cam-on.jpg">
+
+          <div>
+            <b>Cảm ơn</b>
+            <small>MCK</small>
+          </div>
+
+          <span>02</span>
+
+        </div>
+
+        <div class="track" onclick="selectSong(2)">
+
+          <img src="idk.JPEG">
+
+          <div>
+            <b>IDK</b>
+            <small>MCK</small>
+          </div>
+
+          <span>03</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- YOUTUBE PLAYER -->
+
+    <div class="youtube-player">
+
+      <iframe
+        id="youtubePlayer"
+        width="100%"
+        height="180"
+        src="https://www.youtube.com/embed/vDgKtOoGljU?enablejsapi=1"
+        title="YouTube music player"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
   </div>
 
   <button onclick="show('home')">← Quay lại</button>
+
 </div>
 
-<!-- MỤC LÁ THƯ -->
+<!-- LÁ THƯ -->
+
 <div class="container hidden" id="letter">
+
   <h1>💌 Lá thư nhỏ</h1>
+
   <p>Gửi chồng thúi của em 💗</p>
 
   <div class="letter-content">
-    Chúc chồng thúi 19.11, chắc anh cũng không ngờ đâuuu haaa, em muốn gây bất ngờ cho anh nhưng mà em háo hứng lắm em muốn tặng ngay từ đầu tháng 11 rồi í nhưng mà em phải đặc biệt một tí… vì em là người yêu anh mà.
-    Biết anh biết MCK nên em mới để âm nhạc như thế đó không biết anh có ưng hăm.
-    Yêu chồng thúi!!!
-    Em chúc anh 19.11 vui vẻeee, hạnh phúc ở bên em và bên cạnh gia đình, luôn bên cạnh em tới lúc gặp rồi bền vững mãi đời:)) mặc dù quen cũng không được lâu nhưng mà em muốn bên anh mãi thôi.. người bạn trai tốt của em.
-    Mong sao anh đừng bị ảnh hưởng những sự tiêu cực của bên ngoài hoặc những điều khó nghe của người khác, anh mãi là anh một người hoàn hảo trong mắt em, chẳng cần phải đặc biệt trước mắt người khác.. trong mắt em đủ rồi ha!!
-    Anh phải học thật giỏi, chăm chỉ với mục tiêu mà mình muốn và đạt được ước muốn đấy. Anh phải ở cạnh em chịu tính em lâu dài nhéee em không muốn mất anh đâu, ơ mà còn nữa anh học thì cũng vừa phải thôi đừng thức khuya rồi cố quá nhé không bệnh đó em lo lắm..
-    Câu cuối cùng là em yêu anh nhiều lắmmm!!!
-    Trẻ trâu của em:))))
+Chúc chồng thúi 19.11, chắc anh cũng không ngờ đâuuu haaa, em muốn gây bất ngờ cho anh nhưng mà em háo hứng lắm em muốn tặng ngay từ đầu tháng 11 rồi í nhưng mà em phải đặc biệt một tí… vì em là người yêu anh mà.
+Biết anh biết MCK nên em mới để âm nhạc như thế đó không biết anh có ưng hăm.
+Yêu chồng thúi!!!
+Em chúc anh 19.11 vui vẻeee, hạnh phúc ở bên em và bên cạnh gia đình, luôn bên cạnh em tới lúc gặp rồi bền vững mãi đời:)) mặc dù quen cũng không được lâu nhưng mà em muốn bên anh mãi thôi.. người bạn trai tốt của em.
+Mong sao anh đừng bị ảnh hưởng những sự tiêu cực của bên ngoài hoặc những điều khó nghe của người khác, anh mãi là anh một người hoàn hảo trong mắt em, chẳng cần phải đặc biệt trước mắt người khác.. trong mắt em đủ rồi ha!!
+Anh phải học thật giỏi, chăm chỉ với mục tiêu mà mình muốn và đạt được ước muốn đấy. Anh phải ở cạnh em chịu tính em lâu dài nhéee em không muốn mất anh đâu, ơ mà còn nữa anh học thì cũng vừa phải thôi đừng thức khuya rồi cố quá nhé không bệnh đó em lo lắm..
+Câu cuối cùng là em yêu anh nhiều lắmmm!!!
+Trẻ trâu của em:))))
   </div>
 
-  <br>
   <button onclick="show('home')">← Quay lại</button>
+
 </div>
 
 <script>
+
+// MẬT KHẨU
+
 function unlock() {
-  const password = document.getElementById("password").value;
+
+  const password =
+    document.getElementById("password").value;
 
   if (password === "0302") {
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("home").classList.remove("hidden");
+
+    document.getElementById("login")
+      .classList.add("hidden");
+
+    document.getElementById("home")
+      .classList.remove("hidden");
+
   } else {
+
     document.getElementById("error").textContent =
       "Mật khẩu chưa đúng, thử lại nhé 💗";
+
   }
 }
 
+// CHUYỂN TRANG
+
 function show(page) {
+
   ["home", "music", "letter"].forEach(id => {
-    document.getElementById(id).classList.add("hidden");
+
+    document.getElementById(id)
+      .classList.add("hidden");
+
   });
 
-  document.getElementById(page).classList.remove("hidden");
+  document.getElementById(page)
+    .classList.remove("hidden");
+
+}
+
+// DANH SÁCH BÀI HÁT
+
+const songs = [
+
+  {
+    title: "Nguyễn Văn Mười",
+    image: "nguyen-van-muoi.jpg",
+    video: "vDgKtOoGljU"
+  },
+
+  {
+    title: "Cảm ơn",
+    image: "cam-on.jpg",
+    video: "BWNkgqKZP0Q"
+  },
+
+  {
+    title: "IDK",
+    image: "idk.JPEG",
+    video: "2MsxTstZ_Wo"
+  }
+
+];
+
+let currentSong = 0;
+let isPlaying = false;
+
+// CHỌN BÀI HÁT
+
+function selectSong(index) {
+
+  currentSong = index;
+
+  const song = songs[index];
+
+  document.getElementById("songTitle")
+    .textContent = song.title;
+
+  document.getElementById("albumCover")
+    .src = song.image;
+
+  document.getElementById("youtubePlayer")
+    .src =
+    "https://www.youtube.com/embed/" +
+    song.video +
+    "?enablejsapi=1&autoplay=1";
+
+  isPlaying = true;
+
+  document.getElementById("playBtn")
+    .textContent = "Ⅱ";
+
+  document.querySelectorAll(".track")
+    .forEach((track, i) => {
+
+      track.classList.toggle(
+        "active",
+        i === index
+      );
+
+    });
+
+}
+
+// BÀI TIẾP THEO
+
+function nextSong() {
+
+  selectSong(
+    (currentSong + 1) % songs.length
+  );
+
+}
+
+// BÀI TRƯỚC
+
+function previousSong() {
+
+  selectSong(
+    (currentSong - 1 + songs.length) %
+    songs.length
+  );
+
+}
+
+// PHÁT / TẠM DỪNG
+
+function togglePlay() {
+
+  const player =
+    document.getElementById("youtubePlayer");
+
+  const command =
+    isPlaying ? "pauseVideo" : "playVideo";
+
+  player.contentWindow.postMessage(
+    JSON.stringify({
+      event: "command",
+      func: command,
+      args: []
+    }),
+    "*"
+  );
+
+  isPlaying = !isPlaying;
+
+  document.getElementById("playBtn")
+    .textContent = isPlaying ? "Ⅱ" : "▶";
+
 }
 
 // TRÁI TIM BAY
-setInterval(() => {
-  const heart = document.createElement("span");
-  heart.className = "floating";
-  heart.textContent = "♡";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (15 + Math.random() * 25) + "px";
 
-  document.getElementById("hearts").appendChild(heart);
+setInterval(() => {
+
+  const heart = document.createElement("span");
+
+  heart.className = "floating";
+
+  heart.textContent = "♡";
+
+  heart.style.left =
+    Math.random() * 100 + "vw";
+
+  heart.style.fontSize =
+    (15 + Math.random() * 25) + "px";
+
+  document.getElementById("hearts")
+    .appendChild(heart);
 
   setTimeout(() => heart.remove(), 7000);
+
 }, 700);
+
 </script>
 
 </body>
