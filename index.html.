@@ -163,26 +163,44 @@ textarea {
   <h1>🎵 Góc âm nhạc</h1>
   <p>Những bài hát em muốn gửi đến anh 💗</p>
 
+  <!-- BÀI 1 -->
   <div class="card">
     <h3>Nguyễn Văn Mười - MCK</h3>
+
+    <img src="images/nguyen-van-muoi.jpg"
+         class="cover"
+         alt="Nguyễn Văn Mười">
+
     <iframe width="100%" height="220"
-      src="https://youtu.be/vDgKtOoGljU"
+      src="https://www.youtube.com/embed/vDgKtOoGljU"
       allowfullscreen>
     </iframe>
   </div>
 
+  <!-- BÀI 2 -->
   <div class="card">
     <h3>Cảm ơn - MCK</h3>
+
+    <img src="images/cam-on.jpg"
+         class="cover"
+         alt="Cảm ơn">
+
     <iframe width="100%" height="220"
-      src="https://youtu.be/BWNkgqKZP0Q"
+      src="https://www.youtube.com/embed/BWNkgqKZP0Q"
       allowfullscreen>
     </iframe>
   </div>
 
+  <!-- BÀI 3 -->
   <div class="card">
     <h3>IDK - MCK</h3>
+
+    <img src="images/idk.jpg"
+         class="cover"
+         alt="IDK">
+
     <iframe width="100%" height="220"
-      src="https://youtu.be/2MsxTstZ_Wo"
+      src="https://www.youtube.com/embed/2MsxTstZ_Wo"
       allowfullscreen>
     </iframe>
   </div>
